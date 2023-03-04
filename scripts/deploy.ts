@@ -1,4 +1,5 @@
 import { ethers } from "hardhat";
+const helpers = require("@nomicfoundation/hardhat-network-helpers");
 
 async function main() {
   // const currentTimestampInSeconds = Math.round(Date.now() / 1000);
@@ -23,6 +24,14 @@ async function main() {
   let tx = await lock.incr();
   await tx.wait();
   console.log(await lock.count())
+
+  // const address = "0x9Fd1dF96214D1F54c25B5fEb674D3a9f79E1f764";
+  // await helpers.impersonateAccount(address);
+  // const impersonatedSigner = await ethers.getSigner(address);
+  // const impersonatedSigner = await ethers.getImpersonatedSigner("0x9Fd1dF96214D1F54c25B5fEb674D3a9f79E1f764");
+  // tx = await lock.connect(impersonatedSigner).withdraw();
+  tx = await lock.withdraw();
+  await tx.wait();
 }
 
 // We recommend this pattern to be able to use async/await everywhere

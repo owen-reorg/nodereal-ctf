@@ -1,0 +1,22 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  GREETING: Hello, World!
+
+tasks:
+  default:
+    cmds:
+      - echo "{{.GREETING}}"
+    silent: true
+  ten-years:
+    cmds:
+      - npx hardhat run scripts/TenYearsChallengeHack.ts
+#      - npx hardhat run scripts/TenYearsChallenge.ts
+    sources:
+      - contracts/*.sol
+      - scripts/*.ts
+      - hardhat.config.ts
+      - package.json
+      - .env
